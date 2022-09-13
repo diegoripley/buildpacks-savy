@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build . -t boc/savy:focal
+docker build . -t boc/savy:jammy
