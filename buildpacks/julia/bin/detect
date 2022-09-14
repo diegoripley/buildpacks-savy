@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [[ ! -f Project.toml ]]; then
+    exit 2
+fi
