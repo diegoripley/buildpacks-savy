@@ -17,7 +17,9 @@ curl -o julia.tar.gz "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_M
 mkdir -p ${JULIA_LAYER_DIR}
 tar xf julia.tar.gz --strip-components=1 -C ${JULIA_LAYER_DIR}
 
+# 3. Symlink Julia
 sudo ln -s ${JULIA_LAYER_DIR}/bin/* /usr/local/bin
 rm -rf julia.tar.gz
 
-
+# 4. Install Julia packages
+julia --project=. -e 'using Pkg; Pkg.instantiate()'
