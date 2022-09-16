@@ -1,0 +1,17 @@
+# Buildpacks to include in builder
+[[buildpacks]]
+id = "savy/julia"
+version = "0.0.1"
+uri = "../../buildpacks/julia"
+
+# Order used for detection
+[[order]]
+[[order.group]]
+id = "savy/julia"
+version = "0.0.1"
+
+# Stack that will be used by the builder
+[stack]
+id = "io.buildpacks.boc.stacks.jammy"
+run-image = "boc/savy-run:jammy"
+build-image = "boc/savy-build:jammy"
