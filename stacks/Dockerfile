@@ -13,8 +13,21 @@ RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
 
 # 4. Install common packages
 RUN apt-get update && \
-  apt-get install -y python3-pip && \
+  apt-get install -y sudo python3-pip curl && \
   rm -rf /var/lib/apt/lists/*
 
-# 5. Set user and group (as declared in base image)
+# 5. Start a new run stage
+FROM base as run
+
+# 6. Set user and group (as declared in base image)
+USER ${CNB_USER_ID}:${CNB_GROUP_ID}
+
+# 7. Start a new build stage
+FROM base as build
+
+# 8. Install packages that we want to make available at build time
+RUN apt-get update && \
+  rm -rf /var/lib/apt/lists/* 
+
+# 9. Set user and group (as declared in base image)
 USER ${CNB_USER_ID}:${CNB_GROUP_ID}
