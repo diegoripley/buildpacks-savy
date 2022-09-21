@@ -4,10 +4,20 @@ id = "savy/julia"
 version = "0.0.1"
 uri = "../../buildpacks/julia"
 
+[[buildpacks]]
+id = "savy/python"
+version = "0.0.1"
+uri = "../../buildpacks/python"
+
 # Order used for detection
 [[order]]
 [[order.group]]
 id = "savy/julia"
+version = "0.0.1"
+
+[[order]]
+[[order.group]]
+id = "savy/python"
 version = "0.0.1"
 
 # Stack that will be used by the builder

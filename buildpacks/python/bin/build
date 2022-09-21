@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# 1. Get Args
+layers_dir="$1"
+env_dir="$2/env"
+plan_path="$3"
+
+# 2. Install Python packages
+pip install -r requirements.txt
+
+# 3. Add pip local bin
+export PATH=/home/cnb/.local/bin:$PATH
