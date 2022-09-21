@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-if [[ ! -f Project.toml ]]; then
+if [[ ! -f packages.jl ]]; then
     exit 2
 fi
