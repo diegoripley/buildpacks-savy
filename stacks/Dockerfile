@@ -13,7 +13,7 @@ RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
 
 # 4. Install common packages
 RUN apt-get update && \
-  apt-get install -y python3-pip curl && \
+  apt-get install -y python3 python3-pip curl && \
   rm -rf /var/lib/apt/lists/*
 
 # 5. Start a new run stage
