@@ -10,5 +10,11 @@ plan_path="$3"
 # 2. Install Python packages
 pip install -r requirements.txt
 
+cat <<TOML > /home/cnb/.local.toml
+[types]
+  launch = true
+TOML
+
 # 3. Add pip local bin
 export PATH=/home/cnb/.local/bin:$PATH
+
