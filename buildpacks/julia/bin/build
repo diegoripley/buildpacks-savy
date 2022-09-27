@@ -15,14 +15,21 @@ JULIA_MINOR_VERSION=$(echo $JULIA_VERSION | grep -Po "^[0-9]+.[0-9]+")
 curl -o julia.tar.gz "https://julialang-s3.julialang.org/bin/linux/x64/${JULIA_MINOR_VERSION}/julia-${JULIA_VERSION}-linux-x86_64.tar.gz"
 
 mkdir -p ${JULIA_LAYER_DIR}
-echo ${JULIA_LAYER_DIR}
 tar xf julia.tar.gz --strip-components=1 -C ${JULIA_LAYER_DIR}
 
-# 3. Add Julia to PATH
+# 3. Include Julia bin directory as a layer
+cat <<TOML > ${JULIA_LAYER_DIR}.toml
+[types]
+  launch = true
+TOML
+
+# 4. Add Julia to PATH
 export PATH=${JULIA_LAYER_DIR}/bin:$PATH
 
 rm -rf julia.tar.gz
 
 # 4. Install Julia packages
-#julia --project=. -e 'using Pkg; Pkg.instantiate()'
 julia packages.jl
+
+# 5. Copy Julia packages to /layers directory
+cp -R ~/.julia /layers/savy_julia/julia
