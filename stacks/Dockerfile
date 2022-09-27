@@ -16,12 +16,8 @@ RUN apt-get update && \
   apt-get install -y python3 python3-pip curl && \
   rm -rf /var/lib/apt/lists/*
 
-# TODO: Fix. Temporary solution. Buildpacks cannot include any other directories than in the layers folder
-RUN mkdir -p /layers/savy_julia/julia/.julia && \
-  ln -s /layers/savy_julia/julia/.julia /home/cnb/.julia && \
-  chown -R ${CNB_USER_ID}:${CNB_GROUP_ID} /layers/savy_julia/julia
+COPY scripts/* /etc/profile.d
 
-#ln -s /home/cnb/.julia /layers/savy_julia/julia/.julia && \
 # 5. Start a new run stage
 FROM base as run
 
