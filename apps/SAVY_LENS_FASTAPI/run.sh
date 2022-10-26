@@ -5,3 +5,6 @@ if [ ! -L ~/.local ]; then
     ln -s /layers/savy_python/python/.local /home/cnb/.local
 fi
 
+# TODO
+# Run Python app
+
