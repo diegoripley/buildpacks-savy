@@ -7,9 +7,20 @@ layers_dir="$1"
 env_dir="$2/env"
 plan_path="$3"
 
+PYTHON_LAYER_DIR="${layers_dir}/python"
+mkdir -p ${PYTHON_LAYER_DIR}
+
 # 2. Install Python packages
 pip install -r requirements.txt
 
 # 3. Add pip local bin
 export PATH=/home/cnb/.local/bin:$PATH
 
+# 4. Copy Python packages to /layers directory
+cp -R ~/.local /layers/savy_python/python
+
+# 5. Include Python .local directory as layer
+cat <<TOML > ${PYTHON_LAYER_DIR}.toml
+[types]
+  launch = true
+TOML
