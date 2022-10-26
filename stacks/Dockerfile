@@ -16,8 +16,6 @@ RUN apt-get update && \
   apt-get install -y python3 python3-pip curl && \
   rm -rf /var/lib/apt/lists/*
 
-COPY scripts/* /etc/profile.d
-
 # 5. Start a new run stage
 FROM base as run
 
